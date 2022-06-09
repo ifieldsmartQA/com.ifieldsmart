@@ -32,7 +32,7 @@ public class LoginPositiveScenerio extends Utility {
 		markstatus("pass", "User1 login sucessful");
 		String actualurl = driver.getCurrentUrl();
 
-		if (actualurl.contains("https://apps.ifieldsmart.com/Indexdocs")) {
+		if (actualurl.contains("projectlist")) {
 			markstatus("pass", "Login successful for user " + userName);
 		} else {
 			markstatus("fail", "Login failed for user " + userName);

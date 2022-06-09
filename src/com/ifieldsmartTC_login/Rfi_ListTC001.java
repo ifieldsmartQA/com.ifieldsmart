@@ -64,7 +64,7 @@ public class Rfi_ListTC001 extends Utility {
 	}
 	@Test(priority=4)
 	public void rfiListCreate() {
-		starttestcse("User click on createRFI \"+\"");
+		starttestcse("User click on createRFI ");
 
 		elementfinder(objRfiListPage.createRFI_Btn).click();
 		logger.log(Status.INFO, "Clicked on createRFI");
