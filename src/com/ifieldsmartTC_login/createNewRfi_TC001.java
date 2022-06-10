@@ -29,9 +29,7 @@ public class createNewRfi_TC001 extends Utility {
 
 //		markstatus("pass", "User1 login sucessful");
 		Thread.sleep(4000);
-		 String exphomeurl = "https://apps.ifieldsmart.com/Indexdocs";
-
-		String actualurl = driver.getCurrentUrl();
+		 String actualurl = driver.getCurrentUrl();
 
 		if (actualurl.contains("projectlist")) {
 			markstatus("pass", "Login successful for user " + userName);
@@ -72,14 +70,14 @@ public class createNewRfi_TC001 extends Utility {
 		logger.log(Status.INFO, "Clicked on createRFI");
 //		elementfinder(objProjectsPage.projectCard1).click();
 //		logger.log(Status.INFO, "Clicked on card");
-
+		markstatus("pass", "Login successful for user " );
 		String actualurl = driver.getCurrentUrl();
-
-		if (actualurl.contains("RFILIST")) {
-			markstatus("pass", "Login successful for user " + userName);
-		} else {
-			markstatus("fail", "Login failed for user " + userName);
-		}
+		markstatus("pass", "Login successful for user " + actualurl);
+//		if (actualurl.contains("CreateRFI")) {
+//			markstatus("pass", "Login successful for user " + userName);
+//		} else {
+//			markstatus("fail", "Login failed for user " + userName);
+//		}
 
 	}
 

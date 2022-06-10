@@ -3,7 +3,7 @@ package com.ifieldsmart.repository;
 import org.openqa.selenium.By;
 
 public class ProjectsPage {
-	public By projectCard1 = By.xpath("//*[@id=\"ifBIMprojects\"]/div[1]/div/div/div[2]");
+	public By projectCard1 = By.xpath("/html/body/ng-view/div[3]/div[1]/div/div/div/div[1]/div[1]/div/div/div[2]/div/div/div/div[1]/div/p");
 	public By cardTeamUserBtn = By.xpath("//button[@id=\"userassign\"]");
 	public By cardEditBtn = By.xpath("//button[@id=\"editproj\"]");
 

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.ifieldsmartTC_login.Rfi_ListTC001">
+      <class name="com.ifieldsmartTC_login.LoginPositiveScenerio">
         <methods>
           <include name="endreport"/>
-          <include name="rfiListCreate"/>
+          <include name="login"/>
           <include name="initreport"/>
         </methods>
-      </class> <!-- com.ifieldsmartTC_login.Rfi_ListTC001 -->
+      </class> <!-- com.ifieldsmartTC_login.LoginPositiveScenerio -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

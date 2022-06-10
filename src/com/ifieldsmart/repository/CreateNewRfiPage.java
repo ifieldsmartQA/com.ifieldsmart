@@ -9,7 +9,7 @@ public class CreateNewRfiPage {
 	public By createdByPlaceholder = By.xpath("//input[@ng-model=\"CREATEDBY\"]");
 	public By receivedFromSelect = By.xpath("//select[@ng-model=\"Project\"]");
 	public By drawingPlaceholder = By.xpath("//input[@placeholder=\"Enter Drawing Name\"]");
-	public By specSection = By.xpath("//input[@ng-model=\"searchStr\"]");
+	public By specSection = By.xpath("//input[@placeholder=\"Enter Spec Section\"]");
 	public By costImpactSelect = By.xpath("//select[@ng-model=\"userselected.COST_IMPACT\"]");
 	public By visibilitySelect = By.xpath("//select[@ng-model=\"userselected.VISIBILITY\"]");
 	public By dateInitiatedPlaceholder = By.xpath("//input[@ng-model=\"TodayDate\"]");

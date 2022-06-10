@@ -32,6 +32,8 @@ import com.ifieldsmart.repository.RfiListPage;
 
 public class Utility {
 	public WebDriver driver;
+	
+	public String exphomeurl = "https://apps.ifieldsmart.com/#/";
 	String timestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
 	//.
 //  --------------------------------------------------------------------------------------------------------------------------------
@@ -92,6 +94,7 @@ public class Utility {
 		}
 
 		driver.manage().window().maximize();
+	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
 		driver.get(applicationlink);
 	}
@@ -115,6 +118,8 @@ public class Utility {
 	public void starttestcse(String testcasename) {
 		logger = report.createTest(testcasename);
 	}
+	
+	
 //.
 //  ------------------------------------------------AfterSuite start-----------------------------------------------------------------
 //	
