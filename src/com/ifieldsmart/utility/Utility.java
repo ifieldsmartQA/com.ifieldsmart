@@ -44,12 +44,12 @@ public class Utility {
 //.
 //  --------------------------------------------------------------------------------------------------------------------------------
 //	
-	public LoginPage objloginrepo = new LoginPage();
-	public HomePage objhomerepo = new HomePage();
-	public ProjectsPage objProjectsPage = new ProjectsPage();
-	public FolderPage objFolderPage = new FolderPage();
-	public RfiListPage objRfiListPage = new RfiListPage();
-	public CreateNewRfiPage objCreateNewRfiPage = new CreateNewRfiPage();
+//	public LoginPage objloginrepo = new LoginPage();
+//	public HomePage objhomerepo = new HomePage();
+//	public ProjectsPage objProjectsPage = new ProjectsPage();
+//	public FolderPage objFolderPage = new FolderPage();
+//	public RfiListPage objRfiListPage = new RfiListPage();
+//	public CreateNewRfiPage objCreateNewRfiPage = new CreateNewRfiPage();
 //.
 //  ---------------------------------------------------------------------------------------------------------------------------------
 //		
@@ -207,12 +207,12 @@ public class Utility {
 
 	}
 
-	public void ifieldsmartlogin() {
-		elementfinder(objloginrepo.username).sendKeys(usernames.get(1));
-		elementfinder(objloginrepo.password).sendKeys(passwords.get(1));
-		elementfinder(objloginrepo.loginBtn).click();
-	}
-	
+//	public void ifieldsmartlogin() {
+//		elementfinder(objloginrepo.username).sendKeys(usernames.get(1));
+//		elementfinder(objloginrepo.password).sendKeys(passwords.get(1));
+//		elementfinder(objloginrepo.loginBtn).click();
+//	}
+//	
 	
 	
 
