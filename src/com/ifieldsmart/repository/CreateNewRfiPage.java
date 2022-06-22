@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 import com.ifieldsmart.utility.Utility;
@@ -26,8 +27,9 @@ public class CreateNewRfiPage extends Utility {
 	public By chooseFile_btn = By.xpath("//*[@id=\"file\"]");
 	public By fileNamePlaceholder = By.xpath("//input[@ng-model=\"SelectedURLHyperlink\"]");
 	public By urlPlaceholder = By.xpath("//input[@ng-model=\"SelectedURL\"]");
-	public By addUrl_Btn = By.xpath("//input[@ng-model=\"SelectedURLHyperlink\"]");
-	public By distrubutionListChecllist = By.xpath("//input[@ng-model=\"CheckedList\"]");
+	public By addUrl_Btn = By.xpath("//button[@ng-click=\"RFIUrlList(SelectedURLHyperlink,SelectedURL)\"]");
+	public By AttachedFIleByURL = By.xpath("//*[@id=\"createRFIdiv\"]/div[2]/div/div[2]/div/form/div/div[15]/div[3]/div/button");
+	public By distrubutionListChecllist = By.xpath("//input[@ng-model=\"CheckedList\"]");// input[@ng-model=\"CheckedList\"]
 	public By cancelBtnRfi = By.xpath("//button[@id=\"buttoncancel\"]");
 	public By resetBtnRfi = By.xpath("//button[@id=\"buttonrset\"]");
 	public By submitBtnRfi = By.xpath("//button[@id=\"buttonsub\"]");
@@ -38,7 +40,7 @@ public class CreateNewRfiPage extends Utility {
 	}
 
 	public void rfiIDPlaceholderCheck() {
-
+		Assert.assertEquals(false, driver.findElement(rfiIDPlaceholder).isEnabled());
 		if (driver.findElement(rfiIDPlaceholder).isEnabled()) {
 			logger.log(Status.WARNING, "Checked Rfi id field is Enabled");
 		} else {
@@ -58,10 +60,11 @@ public class CreateNewRfiPage extends Utility {
 	}
 
 	public void createdByPlaceholderCheck() {
+		Assert.assertEquals(false, driver.findElement(createdByPlaceholder).isEnabled());
 		if (driver.findElement(createdByPlaceholder).isEnabled()) {
-			logger.log(Status.WARNING, "Checked Rfi id field is Enabled");
+			logger.log(Status.WARNING, "Checked Created By field is Enabled");
 		} else {
-			logger.log(Status.INFO, "Checked Rfi id field is Disable");
+			logger.log(Status.INFO, "Checked Created By field is Disable");
 		}
 	}
 
@@ -134,11 +137,16 @@ public class CreateNewRfiPage extends Utility {
 		logger.log(Status.INFO, "AddUrl Btn clicked");
 	}
 
+	public void distrubutionListChecllist() {
+		driver.findElement(distrubutionListChecllist).click();
+		logger.log(Status.INFO, "AddUrl Btn clicked");
+	}
+
 	public void submitBtnRfiClick() {
 		driver.findElement(submitBtnRfi).click();
 		logger.log(Status.INFO, "RFI form submitted");
 	}
-	
+
 	public void tearDown() {
 		String actualurl = driver.getCurrentUrl();
 

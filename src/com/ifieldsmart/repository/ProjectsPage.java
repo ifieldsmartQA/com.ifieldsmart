@@ -18,6 +18,7 @@ public class ProjectsPage extends Utility {
 	public By searchMyProjects = By.xpath("//input[@type=\"search\"]");
 	public By searchMyProjectsBtn = By.xpath("//*[@id=\"button-addon2\"]");
 	public By myProjectsMainHeader = By.xpath("//a[@class=\"nav-link\"]");
+	public By loggdinUsername = By.xpath("//span[text() = \"Omkrushana\"]");
 
 	public ProjectsPage(WebDriver driver) {
 		this.driver = driver;

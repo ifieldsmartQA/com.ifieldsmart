@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -17,23 +21,19 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.ifieldsmart.repository.CreateNewRfiPage;
-import com.ifieldsmart.repository.FolderPage;
-import com.ifieldsmart.repository.HomePage;
-import com.ifieldsmart.repository.LoginPage;
-import com.ifieldsmart.repository.ProjectsPage;
-import com.ifieldsmart.repository.RfiListPage;
+
 
 public class Utility {
 	public WebDriver driver;
 	
-	public String exphomeurl = "https://apps.ifieldsmart.com/#/";
+	public String exphomeurl = "https://ifbim.ifieldsmart.com/#/";
 	String timestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
 	//.
 //  --------------------------------------------------------------------------------------------------------------------------------
@@ -41,28 +41,22 @@ public class Utility {
 	public static ExtentHtmlReporter htmlreporter;
 	public static ExtentReports report;
 	public static ExtentTest logger;
-//.
+//
 //  --------------------------------------------------------------------------------------------------------------------------------
 //	
-//	public LoginPage objloginrepo = new LoginPage();
-//	public HomePage objhomerepo = new HomePage();
-//	public ProjectsPage objProjectsPage = new ProjectsPage();
-//	public FolderPage objFolderPage = new FolderPage();
-//	public RfiListPage objRfiListPage = new RfiListPage();
-//	public CreateNewRfiPage objCreateNewRfiPage = new CreateNewRfiPage();
-//.
+
+//
 //  ---------------------------------------------------------------------------------------------------------------------------------
 //		
-	public String userName = "omkrushana@ifieldsmart.com";
-	public String pwd = "if#2022";
 
-	public String testDataFile = "C:\\Users\\admin\\eclipse-workspace\\com.ifieldsmart\\src\\testfile.xlsx";
 
-	public String extentFilePath = "C:\\Users\\admin\\eclipse-workspace\\com.ifieldsmart\\src\\ExtentReport";
-	public String screenshotFilePath = "C:\\Users\\admin\\eclipse-workspace\\com.ifieldsmart\\src\\Screenshot";
+	public String testDataFile = "C:\\Users\\admin\\Desktop\\Omkrushana\\com.ifieldsmart\\testfile.xlsx";
 
-	ArrayList<String> usernames = dataread(testDataFile, "Sheet3", 0);
-	ArrayList<String> passwords = dataread(testDataFile, "Sheet3", 1);
+	public String extentFilePath = "C:\\Users\\admin\\Desktop\\Omkrushana\\com.ifieldsmart\\src\\ExtentReport";
+	public String screenshotFilePath = "C:\\Users\\admin\\Desktop\\Omkrushana\\com.ifieldsmart\\src\\Screenshot";
+
+//	ArrayList<String> usernames = dataread(testDataFile, "Sheet3", 0);
+//	ArrayList<String> passwords = dataread(testDataFile, "Sheet3", 1);
 
 	String browsername;
 	String applicationlink;
@@ -87,10 +81,12 @@ public class Utility {
 
 		if (browsername.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"D:\\Omkrushana\\Selenium\\Selenium\\Installation\\Drivers\\chromedriver.exe");
+					"C:\\Users\\admin\\Desktop\\Omkrushana\\Selenium\\Selenium\\Installation\\Drivers\\chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browsername.equalsIgnoreCase("firefox")) {
-			// Code to open firefox browser
+			System.setProperty("webdriver.gecko.driver",
+					"C:\\Users\\admin\\Desktop\\Omkrushana\\Selenium\\Selenium\\Installation\\Drivers\\geckodriver.exe");
+			driver = new FirefoxDriver();
 		}
 
 		driver.manage().window().maximize();
@@ -214,6 +210,42 @@ public class Utility {
 //	}
 //	
 	
-	
+	public static String getCurrentDay() {
+		// Create a Calendar Object
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		// Get Current Day as a number
+		int todayInt = calendar.get(Calendar.DAY_OF_MONTH);
+		System.out.println("Today Int: " + todayInt + "\n");
+		// Integer to String Conversion
+		String todayStr = Integer.toString(todayInt);
+		System.out.println("Today Str: " + todayStr + "\n");
+		return todayStr;
+	}
+
+	// Get The Current Day plus days. You can change this method based on your
+	// needs.
+	public static String getCurrentDayPlus(int days) {
+		LocalDate currentDate = LocalDate.now();
+		int dayOfWeekPlus = currentDate.getDayOfWeek().plus(days).getValue();
+		return Integer.toString(dayOfWeekPlus);
+	}
+    
+	// Click to given day
+	public static void clickGivenDay(List<WebElement> elementList, String day) {
+		// DatePicker is a table. Thus we can navigate to each cell
+		// and if a cell matches with the current date then we will click it.
+		/** Functional JAVA version of this method. */
+		elementList.stream().filter(element -> element.getText().contains(day)).findFirst()
+				.ifPresent(WebElement::click);
+		/** Non-functional JAVA version of this method. */
+		// for (
+		// WebElement cell : elementList) {
+		// String cellText = cell.getText();
+		// if (cellText.contains(day)) {
+		// cell.click();
+		// break;
+		// }
+		// }
+	}
 
 }
