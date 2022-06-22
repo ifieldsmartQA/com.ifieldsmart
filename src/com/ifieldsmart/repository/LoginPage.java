@@ -1,15 +1,20 @@
 package com.ifieldsmart.repository;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.ifieldsmart.utility.Utility;
 
 public class LoginPage extends Utility {
 
 	WebDriver driver;
-	public String userName = "omkrushana@vcsbim.com";
-	public String pwd = "if#2022";
+
 
 	// Constructor that will be automatically called as soon as the object of the
 	// class is created
@@ -31,12 +36,15 @@ public class LoginPage extends Utility {
 		return head;
 	}
 
-	public void enterUsername(String Username) {
+	public void enterUsername(String userName) {
+		
+		driver.findElement(username).clear();
 		driver.findElement(username).sendKeys(userName);
 
 	}
 
 	public void enterPassword(String pwd) {
+		driver.findElement(password).clear();
 		driver.findElement(password).sendKeys(pwd);
 
 	}
@@ -46,14 +54,26 @@ public class LoginPage extends Utility {
 
 	}
 
-	public  void otpAction() {
-		driver.navigate().to("https://vcsbim.com:2096/cpsess5932861654/3rdparty/roundcube/?_task=mail&_mbox=INBOX");
-		
-			driver.findElement(By.id("user")).sendKeys("omkrushana@vcsbim.com");
-			driver.findElement(By.id("pass")).sendKeys("if#2022");
-			driver.findElement(By.id("login_submit")).click();
+	public  String otpAction() {
+		driver.get("https://vcsbim.com/webmail");
+		driver.manage().window().maximize();
 
-		
+		driver.findElement(By.id("user")).sendKeys("omkrushana@vcsbim.com");
+		driver.findElement(By.id("pass")).sendKeys("if#2022");
+		driver.findElement(By.id("login_submit")).click();
+		Duration oneHours = Duration.ofHours(1);
+		WebDriverWait wait = new WebDriverWait(driver, oneHours);
+		WebElement firstEmail = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("iFieldsmart Login OTP")));// *[@title=\"Unread
+																											// \"][1]
+		firstEmail.click();
+		driver.switchTo().defaultContent();
+		WebElement otpEl = driver.switchTo().frame(driver.findElement(By.id("messagecontframe"))).findElement(By.xpath("//*[contains(@style,\"24px/19px\")]"));
+//		WebElement otpEl = driver.findElement(By.xpath("//*[contains(@style,\"24px/19px\")]"));
+
+		String otpRecived = otpEl.getText();
+		driver.close();
+		return otpRecived;
 
 	}
 
@@ -62,7 +82,7 @@ public class LoginPage extends Utility {
 		Thread.sleep(4000);
 		// String exphomeurl = "https://apps.ifieldsmart.com/Indexdocs";
 		String actualURL = driver.getCurrentUrl();
-
+		
 		if (actualURL.contains("projectlist")) {
 			markstatus("pass", "Login successful for user ");
 		} else {
